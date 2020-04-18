@@ -1,6 +1,7 @@
 package com.vytrack.step_definitions;
 
 import com.vytrack.pages.LoginPage;
+import com.vytrack.pages.activities.CalendarEventsPage;
 import com.vytrack.utilities.BrowserUtilities;
 import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.Driver;
@@ -47,9 +48,21 @@ public class LoginStepDefinitions {
         System.out.println("Login as driver");
         loginPage.login("user19","UserUser123");
 
+    }
 
 
+    @When("user enters {string} username and {string} password")
+    public void user_enters_username_and_password(String string, String string2) {
+        System.out.printf("Login with user name %s and %s password\n",string,string2);
+        loginPage.login(string,string2);
 
     }
+
+    @When("user navigate to {string} and {string}")
+    public void user_navigate_to_and(String tab, String subTab) {
+        System.out.printf("user click on the %s tab and navigate to %s module\n",tab,subTab);
+        loginPage.navigateTo(tab,subTab);
+    }
+
 
 }

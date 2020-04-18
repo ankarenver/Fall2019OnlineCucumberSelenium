@@ -91,7 +91,8 @@ public class CalendarEventsPage extends AbstractPageBase {
     public void enterTitle(String title){
         BrowserUtilities.waitForPageToLoad(20);
         wait.until(ExpectedConditions.visibilityOf(this.title)).sendKeys(title);
-        BrowserUtilities.wait(2);
+        wait.until(ExpectedConditions.attributeToBe(this.title,"value",title));
+        BrowserUtilities.wait(5);
     }
 
     public void enterDescription(String description){
@@ -99,8 +100,8 @@ public class CalendarEventsPage extends AbstractPageBase {
         BrowserUtilities.waitForPageToLoad(20);
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(descriptionFrame));
         descriptionTextArea.sendKeys(description);
+        wait.until(ExpectedConditions.textToBePresentInElement(descriptionTextArea,description));
         driver.switchTo().defaultContent();  // exit from the frame
-
     }
 
     public void clickSaveAndClose(){
