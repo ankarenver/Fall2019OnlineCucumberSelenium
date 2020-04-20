@@ -1,0 +1,2 @@
+ctrl + alt + L   to line the table
+//mvn clean verify -q  run in quite mode

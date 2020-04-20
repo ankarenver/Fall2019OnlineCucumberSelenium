@@ -26,8 +26,21 @@ public abstract class AbstractPageBase {
     @FindBy(css = "#user-menu > a")
     protected WebElement currentUser;
 
+    @FindBy(css = "[class='btn-group pull-right'] > button")
+    private WebElement saveAndCloseBtn;
+
+
     public AbstractPageBase(){
         PageFactory.initElements(driver,this);
+    }
+
+    public void clickSaveAndClose(){
+        BrowserUtilities.waitForPageToLoad(20);
+        wait.until(ExpectedConditions.elementToBeClickable(saveAndCloseBtn)).click();
+        BrowserUtilities.waitForPageToLoad(20);
+//        BrowserUtilities.clickWithJS(saveAndCloseBtn);
+        // or we can use
+//        saveAndCloseBtn.click();
     }
 
     public String getCurrentUserName(){

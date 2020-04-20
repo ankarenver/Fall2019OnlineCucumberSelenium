@@ -39,14 +39,25 @@ public class CalendarEventsPage extends AbstractPageBase {
     @FindBy(id = "tinymce")
     private WebElement descriptionTextArea;
 
-    @FindBy(css = "[class='btn-group pull-right'] > button")
-    private WebElement saveAndCloseBtn;
-
     @FindBy(xpath = "(//div[@class='control-label'])[1]")
     private WebElement generalInfoTitle;
 
     @FindBy(xpath = "//label[text()='Description']/following-sibling::div//div")
     private WebElement generalInfoDescription;
+
+    @FindBy(xpath = "//*[contains(text(),'View per page:')]/following-sibling::*//a")
+    private List<WebElement> viewPerPageElements;
+
+    @FindBy(css = "button[class*='btn dropdown-toggle']")
+    private WebElement viewPerPageToggle;
+
+    public List<String> getViewPerPageOptions(){
+        BrowserUtilities.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[title='Create Calendar event']")));
+        viewPerPageToggle.click();
+        BrowserUtilities.wait(2);
+        return BrowserUtilities.getTextFromWebElement(viewPerPageElements);
+    }
 
 
 
@@ -104,14 +115,7 @@ public class CalendarEventsPage extends AbstractPageBase {
         driver.switchTo().defaultContent();  // exit from the frame
     }
 
-    public void clickSaveAndClose(){
-        BrowserUtilities.waitForPageToLoad(20);
-        wait.until(ExpectedConditions.elementToBeClickable(saveAndCloseBtn)).click();
-        BrowserUtilities.waitForPageToLoad(20);
-//        BrowserUtilities.clickWithJS(saveAndCloseBtn);
-        // or we can use
-//        saveAndCloseBtn.click();
-    }
+
 
     public String getGeneralInfoTitle(){
         BrowserUtilities.waitForPageToLoad(20);
