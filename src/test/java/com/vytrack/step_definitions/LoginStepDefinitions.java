@@ -64,5 +64,10 @@ public class LoginStepDefinitions {
         loginPage.navigateTo(tab,subTab);
     }
 
+    @Then("user name should be {string}")
+    public void user_name_should_be(String name) {
+        Assert.assertEquals(name,loginPage.getCurrentUserName());
+    }
+
 
 }
