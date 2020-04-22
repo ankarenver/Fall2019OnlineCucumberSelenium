@@ -37,7 +37,7 @@ public abstract class AbstractPageBase {
     public void clickSaveAndClose(){
         BrowserUtilities.waitForPageToLoad(20);
         wait.until(ExpectedConditions.elementToBeClickable(saveAndCloseBtn)).click();
-        BrowserUtilities.waitForPageToLoad(20);
+        waitForLoaderMask();
 //        BrowserUtilities.clickWithJS(saveAndCloseBtn);
         // or we can use
 //        saveAndCloseBtn.click();

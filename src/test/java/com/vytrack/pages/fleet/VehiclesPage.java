@@ -41,6 +41,7 @@ public class VehiclesPage extends AbstractPageBase {
 
     public void setDriverInput(String driver) {
         driverInput.sendKeys(driver);
+        wait.until(ExpectedConditions.attributeToBe(driverInput,"value",driver));
     }
 
 
@@ -67,6 +68,7 @@ public class VehiclesPage extends AbstractPageBase {
     public void clickToCreateCar(){
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.elementToBeClickable(createCar)).click();
+        waitForLoaderMask();
     }
 
 
