@@ -46,6 +46,27 @@ public class LoginPage extends AbstractPageBase {
         this.password.sendKeys(ConfigurationReader.getProperty("password"),Keys.ENTER);
     }
 
+    /**
+     * this method stands for login based on user type
+     * For example: if parameter is equals to driver, user will login as a driver
+     * If role parameter is not correct, method will throw exception
+     * @param userType  driver, sales manager or store manager
+     */
+    public void login(String userType){
+        String userName="";
+        if (userType.equalsIgnoreCase("driver")){
+            userName="user15";
+        }else if (userType.equalsIgnoreCase("sales manager")){
+            userName="salesmanager110";
+        }else if (userType.equalsIgnoreCase("store manager")){
+            userName="storemanager85";
+        }else {
+            throw new RuntimeException("invalid user type");
+        }
+        System.out.println("Login as " + userType);
+        login(userName,"UserUser123");
+    }
+
     public String getWarningMessageText(){
         return warningMessage.getText();
     }

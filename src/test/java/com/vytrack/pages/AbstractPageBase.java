@@ -63,9 +63,16 @@ public abstract class AbstractPageBase {
         BrowserUtilities.wait(3);
         actions.moveToElement(tabElements).pause(2000).click(moduleElement).build().perform();
         BrowserUtilities.wait(4);
-
+        waitForLoaderMask();
 
     }
 
+    /**
+     * this method can be used to wait until that terrible loader mask (spinning wheel) will be gone
+     * if loader mask is present, website is loading some data and you cannot perform any operations
+     */
+    public void waitForLoaderMask() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[class*='loader-mask']")));
+    }
 
 }
