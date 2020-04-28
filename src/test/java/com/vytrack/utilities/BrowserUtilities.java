@@ -33,7 +33,7 @@ public class BrowserUtilities {
      * @param elements represents collection of WebElements
      * @return collection of strings
      */
-    public static List<String> getTextFromWebElements(List<WebElement> elements) {
+    public static List<String> getTextFromWebElement(List<WebElement> elements) {
         List<String> textValues = new ArrayList<>();
         for (WebElement element : elements) {
             if (!element.getText().isEmpty()) {
@@ -117,14 +117,13 @@ public class BrowserUtilities {
      * to target window based on page title
      * @param title of the window to switch
      */
-    public static void switchWindow(String title){
+    public static void scitchWindow(String title){
         Set<String> windowHandles = Driver.getDriver().getWindowHandles();
-        windowHandles.forEach(each-> {Driver.getDriver().switchTo().window(each); if (Driver.getDriver().getTitle().equals(title)); });
-    }
-
-    public static List<String> getTextFromWebElement(List<WebElement> data){
-        List<String> result = new ArrayList<>();
-        data.forEach(each -> result.add(each.getText()));
-        return result;
+        for(String window : windowHandles){
+            Driver.getDriver().switchTo().window(window);
+            if(Driver.getDriver().getTitle().equals(title)){
+                break;
+            }
+        }
     }
 }
