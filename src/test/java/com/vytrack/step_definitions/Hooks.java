@@ -9,7 +9,8 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
 
-    @Before
+    // we can change priority lowe number higher priority
+    @Before(order =1)
     public void setup(){
         System.out.println("Test setup");
         Driver.getDriver().manage().window().maximize();
